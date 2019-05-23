@@ -36,7 +36,7 @@
 
     // Prepare statement with query
     public function query($sql){
-      $this->stmt = $this->dbh->preapre($sql);
+      $this->stmt = $this->dbh->prepare($sql);
     }
 
     // Bind values
@@ -71,8 +71,14 @@
       return $this->stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
+    // Get single record as object
     public function single(){
       $this->execute();
       return $this->stmt->fetch(PDO::FETCH_OBJ);
+    }
+
+    // Get row count
+    public function rowCount(){
+      return $this->stmt->rowCount();
     }
   }
